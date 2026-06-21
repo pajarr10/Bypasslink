@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#000000">
+  <meta name="color-scheme" content="dark">
+  <meta name="author" content="Pajar">
+  <meta name="generator" content="BipaSunlok">
+  <meta name="copyright" content="Pajar">
+  <title>Admin Dashboard - BipaSunlok</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Ambient background -->
+    <div class="ambient-bg">
+      <div class="bg-blob blob-1"></div>
+      <div class="bg-blob blob-2"></div>
+      <div class="bg-blob blob-3"></div>
+    </div>
+
+    <!-- Login Screen -->
+    <div id="loginScreen" class="login-screen">
+      <div class="login-card glass">
+        <div class="login-logo">
+          <div class="logo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M13.5 2C13.5 2 8 6.5 8 12.5C8 18.5 13.5 23 13.5 23" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M10.5 2C10.5 2 5 6.5 5 12.5C5 18.5 10.5 23 10.5 23" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" opacity="0.5"/>
+              <path d="M17 6L21 6M17 10L21 10M17 14L21 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+        <h1 class="login-title">Admin Dashboard</h1>
+        <p class="login-subtitle">Masukkan Admin Key untuk melanjutkan</p>
+        <div class="login-input-group">
+          <input type="password" id="adminKeyInput" class="ios-input" placeholder="Admin Key" autocomplete="off">
+        </div>
+        <button id="loginBtn" class="btn-primary">Masuk</button>
+        <p id="loginError" class="login-error hidden">Admin Key salah</p>
+      </div>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="dashboard" class="dashboard hidden">
+      <!-- Header -->
+      <header class="admin-header glass">
+        <div class="header-left">
+          <div class="logo-icon small">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M13.5 2C13.5 2 8 6.5 8 12.5C8 18.5 13.5 23 13.5 23" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M10.5 2C10.5 2 5 6.5 5 12.5C5 18.5 10.5 23 10.5 23" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" opacity="0.5"/>
+              <path d="M17 6L21 6M17 10L21 10M17 14L21 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div>
+            <h1 class="header-title">Dashboard</h1>
+            <p class="header-subtitle">BipaSunlok Analytics</p>
+          </div>
+        </div>
+        <div class="header-actions">
+          <div class="live-indicator">
+            <span class="live-dot"></span>
+            <span class="live-text">Live</span>
+          </div>
+          <button id="logoutBtn" class="btn-icon-small" aria-label="Keluar">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M16 17L21 12M21 12L16 7M21 12H9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <!-- Stats Grid -->
+      <section class="stats-grid">
+        <div class="stat-card glass visitors">
+          <div class="stat-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M23 21V19C22.9993 18.1137 22.7044 17.2528 22.1614 16.5523C21.6184 15.8519 20.8581 15.3516 20 15.13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M16 3.13C16.8604 3.35031 17.623 3.85071 18.1676 4.55232C18.7122 5.25392 19.0078 6.11683 19.0078 7.005C19.0078 7.89318 18.7122 8.75608 18.1676 9.45769C17.623 10.1593 16.8604 10.6597 16 10.88" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="stat-content">
+            <span class="stat-label">Total Visitor</span>
+            <span class="stat-value" id="statTotalVisitors">0</span>
+          </div>
+        </div>
+
+        <div class="stat-card glass today">
+          <div class="stat-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <polyline points="12 6 12 12 16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="stat-content">
+            <span class="stat-label">Hari Ini</span>
+            <span class="stat-value" id="statTodayVisitors">0</span>
+          </div>
+        </div>
+
+        <div class="stat-card glass online">
+          <div class="stat-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M22 12H18L15 21L9 3L6 12H2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="stat-content">
+            <span class="stat-label">Online</span>
+            <span class="stat-value" id="statOnlineVisitors">0</span>
+          </div>
+        </div>
+
+        <div class="stat-card glass requests">
+          <div class="stat-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M14 2V8H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M16 13H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M16 17H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M10 9H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="stat-content">
+            <span class="stat-label">Total Request</span>
+            <span class="stat-value" id="statTotalRequests">0</span>
+          </div>
+        </div>
+
+        <div class="stat-card glass success">
+          <div class="stat-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="stat-content">
+            <span class="stat-label">Success Rate</span>
+            <span class="stat-value" id="statSuccessRate">0%</span>
+          </div>
+        </div>
+
+        <div class="stat-card glass avg">
+          <div class="stat-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <polyline points="12 6 12 12 16 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="stat-content">
+            <span class="stat-label">Avg Response</span>
+            <span class="stat-value" id="statAvgResponse">0ms</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Charts -->
+      <section class="charts-section">
+        <div class="chart-card glass">
+          <div class="card-header-row">
+            <h2 class="card-title">Browser</h2>
+          </div>
+          <div class="chart-container">
+            <canvas id="browserChart"></canvas>
+          </div>
+        </div>
+        <div class="chart-card glass">
+          <div class="card-header-row">
+            <h2 class="card-title">Operating System</h2>
+          </div>
+          <div class="chart-container">
+            <canvas id="osChart"></canvas>
+          </div>
+        </div>
+        <div class="chart-card glass wide">
+          <div class="card-header-row">
+            <h2 class="card-title">Device Distribution</h2>
+          </div>
+          <div class="chart-container">
+            <canvas id="deviceChart"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- Data Tables -->
+      <section class="data-section">
+        <!-- Recent Bypass -->
+        <div class="data-card glass">
+          <div class="card-header-row">
+            <h2 class="card-title">Recent Bypass</h2>
+            <span class="badge" id="bypassCountBadge">0</span>
+          </div>
+          <div class="data-list" id="recentBypassList">
+            <div class="empty-state">Belum ada data</div>
+          </div>
+        </div>
+
+        <!-- Recent Visitors -->
+        <div class="data-card glass">
+          <div class="card-header-row">
+            <h2 class="card-title">Recent Visitors</h2>
+            <span class="badge" id="visitorCountBadge">0</span>
+          </div>
+          <div class="data-list" id="recentVisitorsList">
+            <div class="empty-state">Belum ada data</div>
+          </div>
+        </div>
+
+        <!-- Recent Logs -->
+        <div class="data-card glass wide">
+          <div class="card-header-row">
+            <h2 class="card-title">Recent Logs</h2>
+            <span class="badge" id="logsCountBadge">0</span>
+          </div>
+          <div class="data-table-wrapper">
+            <table class="data-table" id="recentLogsTable">
+              <thead>
+                <tr>
+                  <th>Waktu</th>
+                  <th>Endpoint</th>
+                  <th>Method</th>
+                  <th>Status</th>
+                  <th>Error</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td colspan="5" class="empty-cell">Belum ada data</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="admin-footer">
+        <p>Made with ❤️ by Pajar</p>
+        <p class="copyright">© 2026 BipaSunlok</p>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast glass hidden">
+    <div class="toast-icon" id="toastIcon">✓</div>
+    <span id="toastMsg">Berhasil</span>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>
