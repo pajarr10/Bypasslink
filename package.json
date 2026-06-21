@@ -1,0 +1,31 @@
+{
+  "name": "bipasunlok",
+  "version": "1.0.0",
+  "description": "BipaSunlok - Website bypass shortlink modern by Pajar",
+  "type": "module",
+  "main": "api/index.js",
+  "scripts": {
+    "start": "node api/index.js",
+    "dev": "node --watch api/index.js",
+    "test": "node --test"
+  },
+  "keywords": [
+    "bypass",
+    "shortlink",
+    "vercel",
+    "serverless",
+    "pajar"
+  ],
+  "author": "Pajar",
+  "license": "MIT",
+  "dependencies": {
+    "@upstash/redis": "^1.34.0",
+    "express": "^4.21.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  },
+  "engines": {
+    "node": ">=18.x"
+  }
+}
